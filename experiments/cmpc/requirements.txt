@@ -1,0 +1,10 @@
+torch==1.7.0+cu110
+matplotlib==3.4.3
+pykeops==1.5
+pandas==1.1.3
+numpy==1.21.4
+librosa==0.6.2
+ipython==8.0.1
+Pillow==9.0.1
+PyYAML==6.0
+scikit_learn==1.0.2

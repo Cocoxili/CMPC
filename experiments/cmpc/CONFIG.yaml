@@ -1,0 +1,149 @@
+Description: "Config file for the paper: 
+Unsupervised Voice-Face Representation Learning by Cross-Modal Prototype Contrast"
+
+root_path: '/home/cocoxili/Res/CMPC/'
+checkpoint_path : 'checkpoints/CMPC/VoxCeleb1/'
+
+resume: False
+test_only: false
+num_workers: 4
+required_devices: 8
+no_test: false
+debug: false
+log2tb: true
+allow_double_bs: false
+seed: 0
+distributed: false
+test_freq: 1000
+print_freq: 10
+online_testing: True
+
+dataset:
+  name: "VoxCeleb1"
+  meta_file: "/home/cocoxili/Res/CMPC/data/vox1_meta.csv"
+  split_file: "/home/cocoxili/Res/CMPC/data/Splits/identity_splits.txt"
+  train_split: [1, 2] #[1, 2]
+  test_split: [4] #[1, 2]
+  face_dir: "/home/cocoxili/work/VoxCeleb1/unzippedFaces"
+  wav_dir: "/home/cocoxili/Dataset/VoxCeleb1/wav"
+  spec_dir: "/home/cocoxili/work/VoxCeleb1/logmel"
+  face_ext: ".jpg"
+  voice_ext: ".pkl"
+  load_spec: True
+  full_res: true
+  batch_size: 128
+  num_workers: 6
+  sampling_rate: 16000
+  audio_duration: [5, 5]
+  fbank_nframes: 500
+  frame_width: 100  # 100 ms
+  frame_shift: 10  # ms
+  n_mels: 64
+  face_size: [224, 224]
+  num_frames: 1
+  train:
+    split: "train"
+    use_augmentation: true
+    drop_last: true
+    clips_per_video: 10
+  test:
+    split: "val"
+    use_augmentation: false
+    drop_last: true
+
+optimizer:
+  name: "adam"
+  weight_decay: 0.00001
+  momentum: 0.9
+  nesterov: False
+  iterations: 3200000
+  lr:
+    name: "CosineAnnealingLR"
+    max_lr: 0.005
+    min_lr: 0.0001
+
+model:
+  model_dir: "checkpoints/CMPC/VoxCeleb1"
+  arch: "FV_Wrapper"
+  args:
+    last_dim: 512
+    proj_dim: 512
+    proj: True
+    pretrain: False
+
+
+clustering:
+  warmup_iter: 300000  # About 16 epoch. 18057 iter/epoch
+#  clustering_iter_freq: 18057  # 1 epoch
+  clustering_iter_freq: 36114
+  num_cluster:
+    - 500
+    - 1000
+    - 1500
+  Niter: 20
+
+loss:
+  name: "IR_CMPC"
+  args:
+    temperature: 0.03
+    delta: -1
+    ka: 0.1
+    R: 3
+  memory_momentum: 0.5
+
+matching:
+  v2f_files: [
+      'data/matching/matching_v2f_U.csv',
+      'data/matching/matching_v2f_G.csv',
+      'data/matching/matching_v2f_N.csv',
+      'data/matching/matching_v2f_GN.csv',
+  ]
+  f2v_files: [
+      'data/matching/matching_f2v_U.csv',
+      'data/matching/matching_f2v_G.csv',
+      'data/matching/matching_f2v_N.csv',
+      'data/matching/matching_f2v_GN.csv',
+  ]
+  1:N_files: [
+      'data/matching/matching_v2f_U.csv',
+      'data/matching/matching_1_3.csv',
+      'data/matching/matching_1_4.csv',
+      'data/matching/matching_1_5.csv',
+      'data/matching/matching_1_6.csv',
+      'data/matching/matching_1_7.csv',
+      'data/matching/matching_1_8.csv',
+      'data/matching/matching_1_9.csv',
+      'data/matching/matching_1_10.csv',
+  ]
+  batch_size: 256
+  num_workers: 4
+  proj: False
+  checkpoint_fn: "model_best.pth.tar"
+
+
+verification:
+  test_files: [
+#      './data/veriflist/veriflist_test_random_seenheard.txt',
+      './data/veriflist/veriflist_test_random_unseenunheard.txt',
+#      './data/veriflist/veriflist_test_G_seenheard.txt',
+      './data/veriflist/veriflist_test_G_unseenunheard.txt',
+#      './data/veriflist/veriflist_test_N_seenheard.txt',
+      './data/veriflist/veriflist_test_N_unseenunheard.txt',
+#      './data/veriflist/veriflist_test_A_seenheard.txt',
+      './data/veriflist/veriflist_test_A_unseenunheard.txt',
+#      './data/veriflist/veriflist_test_GNA_seenheard.txt',
+      './data/veriflist/veriflist_test_GNA_unseenunheard.txt'
+  ]
+  batch_size: 512
+  num_workers: 16
+  voice_aug_times: 5
+  proj: False
+  checkpoint_fn: "model_best.pth.tar"
+
+retrieval:
+  wav_files: 'data/retrieval/wav_20k.csv'
+  jpg_files: 'data/retrieval/jpg_20k.csv'
+  batch_size: 128
+  num_workers: 4
+  proj: False
+  checkpoint_fn: "model_best.pth.tar"
