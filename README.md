@@ -24,29 +24,34 @@ We also provide the [pretrained model](#unsupervised-training) and [testing reso
 * matplotlib==3.4.3
 * pykeops==1.5
 * pandas==1.1.3
-* numpy==1.21.4
 * librosa==0.6.2
-* ipython==8.0.1
 * Pillow==9.0.1
 * PyYAML==6.0
 * scikit_learn==1.0.2
 
 ### Download Pre-trained Models
-<a href="https://drive.google.com/file/d/1pBfEaKVrdNNCcyV7_sXcCmuXgW0j_b94/view?usp=sharing">CID</a>| <a href="https://drive.google.com/file/d/1Bm065HClTvo6T4mjlWP1b0AC6UdRzFHh/view?usp=sharing">CMPC</a>
+<a href="https://github.com/Cocoxili/CMPC/releases/download/v1.0.0/checkpoint_CID.pth.tar">CID</a>| <a href="https://github.com/Cocoxili/CMPC/releases/download/v1.0.0/checkpoint_CMPC.pth.tar">CMPC</a>
 ------ | ------
+
+### Data Pre-processing
+Firstly, we extract the logmel feature from the audio data.
+```angular2html
+cd experiments/cmpc
+python data_transform.py --wav_dir 'directory-of-the-wav-file' --logmel_dir 'destination-path'
+```
 
 
 ### Unsupervised Training
 ```angular2html
-cd experiments/cmpc
 python train.py CONFIG.yaml
 ```
 
 ### Evalution on our trained model
+Experiments on three evalution protocals: matching, verification and retrieval.
+
 ```angular2html
-cd experiments/cmpc
 python matching.py CONFIG.yaml --ckp_path 'checkpoint path'
-python verfication.py CONFIG.yaml --ckp_path 'checkpoint path'
+python verification.py CONFIG.yaml --ckp_path 'checkpoint path'
 python retrieval.py CONFIG.yaml --ckp_path 'checkpoint path'
 ```
 
