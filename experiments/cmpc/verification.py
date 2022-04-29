@@ -13,7 +13,7 @@ from utils.torch_utils import *
 import models
 
 
-parser = argparse.ArgumentParser(description='Evaluation.')
+parser = argparse.ArgumentParser(description='Verification Evaluation.')
 parser.add_argument('cfg', metavar='CFG', help='config file')
 parser.add_argument('--ckp_path', default='', type=str, help='Path of the checkpoint.')
 parser.add_argument('--gpu', default='0', type=str, help='GPU id to use.')

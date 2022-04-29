@@ -16,7 +16,7 @@ from verification import load_model
 import models
 
 
-parser = argparse.ArgumentParser(description='Matching task.')
+parser = argparse.ArgumentParser(description='Retrieval task.')
 parser.add_argument('cfg', metavar='CFG', help='config file')
 parser.add_argument('--ckp_path', default='', type=str, help='Path of the checkpoint.')
 parser.add_argument('--gpu', default='0', type=str, help='GPU id to use.')
