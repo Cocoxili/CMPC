@@ -3,12 +3,17 @@
 This is a PyTorch implementation for CMPC, as described in our paper:
 
 
-**[Unsupervised Voice-Face Representation Learning by Cross-Modal Prototype Contrast](https://arxiv.org/pdf/2004.12943.pdf)**  
+**[Unsupervised Voice-Face Representation Learning by Cross-Modal Prototype Contrast](https://arxiv.org/abs/2204.14057)**
+
 ```angular2html
-@inproceedings{PCL,
-<!---->
+@article{zhu2022unsupervised,
+  title={Unsupervised Voice-Face Representation Learning by Cross-Modal Prototype Contrast},
+  author={Zhu, Boqing and Xu, Kele and Wang, Changjian and Qin, Zheng and Sun, Tao and Wang, Huaimin and Peng, Yuxing},
+  journal={arXiv preprint arXiv:2204.14057},
+  year={2022}
 }
 ```
+
 
 ![Framework](./img/fig_pipeline.png)
 
@@ -35,6 +40,7 @@ We also provide the [pretrained model](#unsupervised-training) and [testing reso
 
 ### Data Pre-processing
 Firstly, we extract the logmel feature from the audio data.
+
 ```angular2html
 cd experiments/cmpc
 python data_transform.py --wav_dir 'directory-of-the-wav-file' --logmel_dir 'destination-path'
@@ -42,6 +48,7 @@ python data_transform.py --wav_dir 'directory-of-the-wav-file' --logmel_dir 'des
 
 
 ### Unsupervised Training
+
 ```angular2html
 python train.py CONFIG.yaml
 ```
