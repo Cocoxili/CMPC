@@ -15,7 +15,7 @@ This is the PyTorch implementation for CMPC, as described in our paper:
 ```
 
 
-![Framework](./img/fig_pipeline.png)
+![Framework](img/fig_pipeline.png)
 
 
 We also provide the [pretrained model](#unsupervised-training) and [testing resources](#testing-data).
