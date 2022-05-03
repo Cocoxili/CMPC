@@ -41,9 +41,9 @@ We also provide the [pretrained model](#unsupervised-training) and [testing reso
 
 In order to speed up the iteration of training, we extract the logmel features of voice data through pre-processing.
 
-```
-cd experiments/cmpc
-python data_transform.py --wav_dir 'directory-of-the-wav-file' --logmel_dir 'destination-path'
+```bash
+>> cd experiments/cmpc
+>> python data_transform.py --wav_dir {directory-of-the-wav-file} --logmel_dir {destination-path}
 ```
 
 
@@ -51,18 +51,18 @@ python data_transform.py --wav_dir 'directory-of-the-wav-file' --logmel_dir 'des
 
 The configurations are written in the CONFIG.yaml file, which can be changed according to your needs, 
 such as the path information. The unsupervised training process can begin as:
-```
-python train.py CONFIG.yaml
+```bash
+>> python train.py CONFIG.yaml
 ```
 
 ### Evalution on our trained model
 Experiments on three evalution protocals: matching, verification and retrieval. The '--ckp_path' could be
 the path of downloaded model or your trained model.
 
-```angular2html
-python matching.py CONFIG.yaml --ckp_path 'checkpoint path'
-python verification.py CONFIG.yaml --ckp_path 'checkpoint path'
-python retrieval.py CONFIG.yaml --ckp_path 'checkpoint path'
+```bash
+>> python matching.py CONFIG.yaml --ckp_path {checkpoint path}
+>> python verification.py CONFIG.yaml --ckp_path {checkpoint path}
+>> python retrieval.py CONFIG.yaml --ckp_path {checkpoint path}
 ```
 
 ### Testing data
