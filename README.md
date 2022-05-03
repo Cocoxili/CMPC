@@ -1,6 +1,6 @@
 # Unsupervised Voice-Face Representation Learning by Cross-Modal Prototype Contrast
 
-This is a PyTorch implementation for CMPC, as described in our paper:
+This is the PyTorch implementation for CMPC, as described in our paper:
 
 
 **[Unsupervised Voice-Face Representation Learning by Cross-Modal Prototype Contrast](https://arxiv.org/abs/2204.14057)**
@@ -19,8 +19,6 @@ This is a PyTorch implementation for CMPC, as described in our paper:
 
 
 We also provide the [pretrained model](#unsupervised-training) and [testing resources](#testing-data).
-### Unsupervised Training
-
 
 
 ### Requirments:
@@ -35,13 +33,15 @@ We also provide the [pretrained model](#unsupervised-training) and [testing reso
 * scikit_learn==1.0.2
 
 ### Download Pre-trained Models
+
 <a href="https://github.com/Cocoxili/CMPC/releases/download/v1.0.0/checkpoint_CID.pth.tar">CID</a>| <a href="https://github.com/Cocoxili/CMPC/releases/download/v1.0.0/checkpoint_CMPC.pth.tar">CMPC</a>
 ------ | ------
 
 ### Data Pre-processing
-Firstly, we extract the logmel feature from the audio data.
 
-```angular2html
+In order to speed up the iteration of training, we extract the logmel features of voice data through pre-processing.
+
+```
 cd experiments/cmpc
 python data_transform.py --wav_dir 'directory-of-the-wav-file' --logmel_dir 'destination-path'
 ```
@@ -49,12 +49,15 @@ python data_transform.py --wav_dir 'directory-of-the-wav-file' --logmel_dir 'des
 
 ### Unsupervised Training
 
-```angular2html
+The configurations are written in the CONFIG.yaml file, which can be changed according to your needs, 
+such as the path information. The unsupervised training process can begin as:
+```
 python train.py CONFIG.yaml
 ```
 
 ### Evalution on our trained model
-Experiments on three evalution protocals: matching, verification and retrieval.
+Experiments on three evalution protocals: matching, verification and retrieval. The '--ckp_path' could be
+the path of downloaded model or your trained model.
 
 ```angular2html
 python matching.py CONFIG.yaml --ckp_path 'checkpoint path'
