@@ -6,10 +6,10 @@ This is the PyTorch implementation for CMPC, as described in our paper:
 **[Unsupervised Voice-Face Representation Learning by Cross-Modal Prototype Contrast](https://arxiv.org/abs/2204.14057)**
 
 ```angular2html
-@article{zhu2022unsupervised,
+@inproceedings{zhu2022unsupervised,
   title={Unsupervised Voice-Face Representation Learning by Cross-Modal Prototype Contrast},
   author={Zhu, Boqing and Xu, Kele and Wang, Changjian and Qin, Zheng and Sun, Tao and Wang, Huaimin and Peng, Yuxing},
-  journal={arXiv preprint arXiv:2204.14057},
+  booktitle={IJCAI},
   year={2022}
 }
 ```
