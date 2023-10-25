@@ -9,8 +9,10 @@ This is the PyTorch implementation for CMPC, as described in our paper:
 @inproceedings{zhu2022unsupervised,
   title={Unsupervised Voice-Face Representation Learning by Cross-Modal Prototype Contrast},
   author={Zhu, Boqing and Xu, Kele and Wang, Changjian and Qin, Zheng and Sun, Tao and Wang, Huaimin and Peng, Yuxing},
-  booktitle={IJCAI},
-  year={2022}
+  booktitle={Proceedings of the Thirty-First International Joint Conference on Artificial Intelligence, {IJCAI-22}},
+  pages={3787--3794},
+  year={2022},
+  month={7}
 }
 ```
 
